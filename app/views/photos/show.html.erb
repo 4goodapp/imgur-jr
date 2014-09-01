@@ -5,15 +5,13 @@
     <br><br>
 
     <% if current_user %>
-         <%= form_for [@photo, Vote.new] do |f| %>
-          <%= f.label "#{@photo.vote_count} votes" %> <br>
-          <br>
-          <%= f.submit "Like"%> <br>
-          <br>
-          <% end %>
-    <% end %>
+      <%= form_for [@photo, Vote.new] do |f| %>
+        <%= f.label "#{@photo.vote_count} votes" %> <br>
+        <br>
+        <%= f.submit "Like"%> <br>
+        <br>
+      <% end %>
 
-    <% if current_user %>
       <%= form_for [@photo, Comment.new] do |f| %>
         <%= f.text_area :text, placeholder: "Enter your comment here..." %><br><br>
         <%= f.submit "Save"%>

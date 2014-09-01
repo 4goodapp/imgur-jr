@@ -1,4 +1,10 @@
 $(document).ready(function() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
 	login = $('#loginUser');
 	buttonLogin = $('#signin-button');
 	buttonLoginForm = $('form[id=new_session]')

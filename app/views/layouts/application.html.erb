@@ -9,9 +9,9 @@
 	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  <%= csrf_meta_tags %>
-	  <%= render partial: "/nav" %>
 	</head>
 	<body>
+	  <%= render partial: "/nav" %>
 
 		<% flash.each do |name, msg| %>
 			<center><%= content_tag :div, msg, class: name %></center>
@@ -27,6 +27,6 @@
 	  </div>
 
 		<%= yield %>
-		
+
 	</body>
 </html>

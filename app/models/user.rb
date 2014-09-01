@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :username, presence: true
   validates :password, presence: true
-  validates_uniqueness_of :username
+
+  validates_uniqueness_of :username, on: :username_changed?
   validates_uniqueness_of :email
   validates_confirmation_of :password, message: "Password doesn't match"
 
@@ -13,10 +14,11 @@ class User < ActiveRecord::Base
   has_secure_password
 
   def already_voted_this?(context, context_type)
-    if context_type == "Photo"
-      return self.votes.where(votable_type: context_type, votable_id: context.id).first != nil
-    else
-      return self.votes.where(votable_type: context_type, votable_id: context.id).first != nil
-    end
+    #if context_type == "Photo"
+      #return self.votes.where(votable_type: context_type, votable_id: context.id).first != nil
+    #else
+    #return self.votes.where(votable_type: context_type, votable_id: context.id).first != nil
+    #end
+    self.votes.where(votable: context).exists?
   end
 end

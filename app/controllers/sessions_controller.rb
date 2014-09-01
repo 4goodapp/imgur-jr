@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
 	def create
 		user = User.find_by(email: params[:session][:email])
+
 		if user.nil?
 			flash.now[:error] = "User doesn't exist."
 			render 'new'

@@ -5,9 +5,11 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.create(user_params)
+
 		if @user.save
 			flash[:success] = "You're now registered."
 			session[:user_id] = @user.id
+
 			redirect_to photos_path
 		else
 			flash.now[:error] = "Make sure your password matches!"

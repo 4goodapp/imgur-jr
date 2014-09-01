@@ -1,15 +1,14 @@
 class CommentsController < ApplicationController
-
   def create
     @photo = Photo.find(params[:photo_id])
     @comment = @photo.comments.build(comment_params)
     @comment.update(user_id: current_user.id)
-    20.times { puts "Comment Controller: CREATE"}
+
     if @comment.save
       redirect_to @photo
     else
       @comments = @photo.comments
-      render :template => 'photos/show'
+      render 'photos/show'
     end
   end
 

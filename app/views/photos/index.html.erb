@@ -7,7 +7,7 @@
 <div class="container">
   <div class="imagelist">
     <div class="image">
-    <% @photos.each_with_index do |p, i| %>
+    <% @photos.includes(:image).each_with_index do |p, i| %>
       <%= link_to image_tag(p.image.thumb('180x180#').url, alt:p.image_name), photo_path(p), :class => "main_page_img"  %>
       <span class="point-info">
         <p><%= p.vote_count %> votes</p>

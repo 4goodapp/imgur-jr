@@ -3,10 +3,12 @@ class VotesController < ApplicationController
   def create
     @context = context_obj
     @vote = Vote.new(user_id: current_user.id, votable_id: @context.id, votable_type: context_type)
+
+    # move validation for user already voted to the model
     if current_user.already_voted_this?(@context, context_type)
       redirect_to context_path
     else
-      @vote.save
+      @vote.save # not handling save failure
       @context.update(vote_count: @context.vote_count + 1)
       redirect_to context_path
     end
@@ -30,7 +32,8 @@ private
   end
 
 def context_path
-    votable_is_photo? ? photo_path(context_obj) : photo_path(context_obj.photo)
+    photo_path(context_obj.votable_path)
+    #votable_is_photo? ? photo_path(context_obj) : photo_path(context_obj.photo)
 end
 
 

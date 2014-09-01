@@ -1,5 +1,4 @@
 class PhotosController < ApplicationController
-
   def index
     @photos = Photo.all.order("vote_count DESC").limit(20)
   end
@@ -14,6 +13,7 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(photo_params)
+
     if @photo.save
       redirect_to @photo
     else
